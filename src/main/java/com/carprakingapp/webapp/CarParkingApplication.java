@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CarParkingApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(CarParkingApplication.class, args);
+
+		System.out.println("====Welcome To Car Parking Application====");
 	}
 
 }
