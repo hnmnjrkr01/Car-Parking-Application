@@ -16,6 +16,6 @@ public interface PaymentMethodDAO extends JpaRepository<PaymentMethod, Integer> 
     User findUserByUserId(Integer userId);
 
     @Query("select pm from PaymentMethod pm where pm.paymentMethod = :paymentMethod")
-    List<PaymentMethod> findByPayMethod(Character paymentMethod);
+    List<PaymentMethod> findByPayMethod(String paymentMethod);
 
 }

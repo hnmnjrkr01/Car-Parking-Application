@@ -31,14 +31,19 @@ public class UserReview {
     //---------------------------------------------------------------
 
 
-
-
-
-
     @Column(name = "users_reviews")
     private String userReviews;
 
     @Column(name = "users_review_rating")
     private Integer userReviewRating;
 
+    @Override
+    public String toString() {
+        return "UserReview{" +
+                "userReviewId=" + userReviewId +
+                ", userId=" + userId +
+                ", userReviews='" + userReviews + '\'' +
+                ", userReviewRating=" + userReviewRating +
+                '}';
+    }
 }

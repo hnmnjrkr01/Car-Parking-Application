@@ -42,12 +42,20 @@ public class PaymentMethod {
 
     //-------------------------------------------------------------
 
-    @Column(name="payment_method")
-    private Character paymentMethod;
+    @Column(name="payment_method" , columnDefinition = "ENUM")
+    private String paymentMethod;
 
     @Column(name="date_of_payment")
     private LocalDateTime dateOfPayment;
 
-
+    @Override
+    public String toString() {
+        return "PaymentMethod{" +
+                "paymentId=" + paymentId +
+                ", userId=" + userId +
+                ", paymentMethod=" + paymentMethod +
+                ", dateOfPayment=" + dateOfPayment +
+                '}';
+    }
 }
 

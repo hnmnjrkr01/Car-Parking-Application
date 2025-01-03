@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -32,4 +33,13 @@ public class ParkingLevel {
 
     @Column(name = "max_capacity")
     private int MaximumCapacity;
+
+    @Override
+    public String toString() {
+        return "ParkingLevel{" +
+                "levelId=" + levelId +
+                ", levelCode=" + levelCode +
+                ", MaximumCapacity=" + MaximumCapacity +
+                '}';
+    }
 }

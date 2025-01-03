@@ -73,5 +73,18 @@ public class Booking {
     @Column(name="license_plate_no")
     private String licensePlateNumber;
 
-
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "bookingId=" + bookingId +
+                ", userId=" + userId +
+                ", paymentMethodId=" + paymentMethodId +
+                ", levelId=" + levelId +
+                ", totalPrice=" + totalPrice +
+                ", startDateTime=" + startDateTime +
+                ", endDateTime=" + endDateTime +
+                ", duration=" + duration +
+                ", licensePlateNumber='" + licensePlateNumber + '\'' +
+                '}';
+    }
 }
