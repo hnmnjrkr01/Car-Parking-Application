@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
 
     @GetMapping(value ={"/", "/HomePage", "/homepage.html"})
-    public ModelAndView index() {
+    public ModelAndView homepage() {
         ModelAndView response = new ModelAndView();
         response.setViewName("HomePage");
 
@@ -20,5 +20,13 @@ public class IndexController {
         return response;
     }
 
+    @GetMapping(value = "/index")
+    public ModelAndView index() {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("index");
+
+
+        return response;
+    }
 
 }
