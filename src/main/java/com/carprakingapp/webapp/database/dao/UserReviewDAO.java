@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserReviewDAO extends JpaRepository<UserReview, Integer> {
 
-    User findByUserId(Integer userId);
+    User findByUserId(Integer id);
 
     UserReview findByUserReviewId(Integer userReviewId);
 }

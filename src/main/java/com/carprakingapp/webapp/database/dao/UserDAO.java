@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserDAO extends JpaRepository<User, Integer> {
+public interface UserDAO extends JpaRepository<User, Long> {
 
-    User findByUserId(Integer userId);
+    User findById(Integer id);
 
     User findByEmail(String email);
 

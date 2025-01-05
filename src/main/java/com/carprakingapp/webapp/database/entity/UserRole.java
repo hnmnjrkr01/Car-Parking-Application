@@ -41,7 +41,7 @@ public class UserRole {
                     @JoinColumn(name = "user_role_id", referencedColumnName = "user_role_id",
                             nullable = false, updatable = false, insertable = false)},
             inverseJoinColumns = {
-                    @JoinColumn(name = "user_id", referencedColumnName = "user_id",
+                    @JoinColumn(name = "user_id", referencedColumnName = "id",
                             nullable = false, updatable = false, insertable = false)})
     private List<User> users;
 }
