@@ -59,7 +59,7 @@ public class UserController {
     public ModelAndView searchUserByUsername(@PathVariable String username){
         ModelAndView response = new ModelAndView();
 
-        response.setViewName("/User/user");
+        response.setViewName("/User/signin");
 
         if(!username.isEmpty()) {
             response.addObject("username", username);
