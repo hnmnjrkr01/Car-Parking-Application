@@ -68,7 +68,7 @@
 
 <div class="bg-text">
     <h1 style=" text-align: center; color: white; ">
-        <a href="jsp/index.jsp">
+        <a href="index">
             Welcome to Parking Application
         </a>
     </h1>

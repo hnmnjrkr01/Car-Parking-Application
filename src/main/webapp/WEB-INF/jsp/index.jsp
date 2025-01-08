@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' type='text/css' href="/pub/css/globalStyleSheet.css">
 
-    <title>Car Parking Services</title>
-    <style>
+    <title>Car Parking Services - Easy Park</title>
+
+</head>
+<style>
 
         .strechfull {
             width: 100%;
@@ -129,19 +131,12 @@
         }
 
     </style>
-</head>
+
+
+
 <body>
 
-<header>
-    <h1>Welcome to QuickPark</h1>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="signin.html">Sign Up</a>
-        <a href="login.html">User Login</a>
-    </nav>
-</header>
+<jsp:include page="include/header.jsp"/>
 
 
 <div class="hero" style="background-image: url('/pub/images/image2.jpg');">
@@ -241,10 +236,10 @@
         <div class="answer">Cancellation policies vary depending on the parking provider. Please check the terms and conditions when making a reservation. Typically, cancellations made in advance may qualify for a partial refund.</div>
     </div>
 </div>
-<footer>
-    <p>&copy; 2024 QuickPark. All rights reserved.</p>
-    <p><u><Ri:a></Ri:a></u></p>
-</footer>
+
+<jsp:include page="include/footer.jsp"/>
+
+
 </body>
 
 <script>

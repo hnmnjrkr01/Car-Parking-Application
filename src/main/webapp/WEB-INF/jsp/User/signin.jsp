@@ -27,14 +27,10 @@
 </style>
 
 <body>
-<header>
-    <h1>Welcome to QuickPark</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+
+<jsp:include page="../include/header.jsp"/>
+
+
 <div class="form-container">
     <h2>Sign Up</h2>
     <form action="/User/searchUserByUsername">
@@ -54,7 +50,7 @@
                     <label for="password">Password</label>
                 </td>
                 <td>
-                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <input type="password" id="password" name="password" value="${user.password}" placeholder="Password" required>
                 </td>
             </tr>
             <tr>
@@ -107,9 +103,8 @@
         </table>
     </form>
 </div>
-<footer>
-    <p>&copy; 2024 QuickPark. All rights reserved.</p>
-</footer>
+
+<jsp:include page="../include/footer.jsp"/>
 </body>
 
 </html>

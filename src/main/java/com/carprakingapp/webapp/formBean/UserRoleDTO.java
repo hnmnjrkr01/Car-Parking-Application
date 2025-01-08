@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 public class UserRoleDTO {
 
-    private Character roleCode;
+    private String roleCode;
 
     private String roleDescription;
 

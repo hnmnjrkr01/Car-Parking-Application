@@ -22,13 +22,13 @@ public class UserRole {
     @Column(name = "user_role_id")
     private Integer userRoleId;
 
-    @Column(name = "role_code")
-    private Character roleCode;
+    @Column(name = "role_code", columnDefinition = "Char")
+    private String roleCode;
 
     @Column(name = "role_description")
     private String roleDescription;
 
-    public UserRole( Character roleCode, String roleDescription) {
+    public UserRole( String roleCode, String roleDescription) {
         this.roleCode = roleCode;
         this.roleDescription = roleDescription;
     }
