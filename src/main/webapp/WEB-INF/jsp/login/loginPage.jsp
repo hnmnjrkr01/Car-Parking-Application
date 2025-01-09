@@ -19,7 +19,7 @@
 
 <div class="form-container">
     <h2>Login</h2>
-    <form action="/login/loginSubmit" method="post" onclick="submitMethod(event);">
+    <form action="/login/loginSubmit" method="post">
         <table>
             <tr>
                 <td>

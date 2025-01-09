@@ -8,11 +8,11 @@
   <link rel='stylesheet' type='text/css' href="/pub/css/globalStyleSheet.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="javaScripts/loginJQuery.js"></script>
-  <title>Found Users - EasyPark</title>
+  <title>EasyPark</title>
 </head>
 <style>
 
-  .rates {
+  .foundUsers {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -23,27 +23,27 @@
     float: inherit;
 
   }
-  .rates h2 {
+  .foundUsers h2 {
     text-align: left;
     margin-bottom: 20px;
     font-size: 2rem;
   }
-  .rates table {
+  .foundUsers table {
     width: 100%;
     border-collapse: collapse;
     margin: 0 auto;
     color: #fff;
 
   }
-  .rates table th, .rates table td {
+  .foundUsers table th, .foundUsers table td {
     border: 1px solid #fff;
     padding: 10px;
     text-align: center;
   }
-  .rates table th {
+  .foundUsers table th {
     background-color: #f39c12;
   }
-  .rates label {
+  .foundUsers label {
     font-weight: bold;
     color: #fff;
     padding: 15px;
@@ -57,9 +57,9 @@
 
 <jsp:include page="../include/header.jsp"/>
 
-<div class="rates" >
+<div class="foundUsers" >
   <h2>Found Users</h2>
-  <form action="/User/signin" method="post">
+  <form action="/User/signUp" method="post">
     <table  >
     <tr>
       <th>Firstname</th>

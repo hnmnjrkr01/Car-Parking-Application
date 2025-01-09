@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ParkingLevelDAO extends JpaRepository<ParkingLevel, Integer> {
+public interface ParkingLevelDAO extends JpaRepository<ParkingLevel, Long> {
 
     ParkingLevel findByLevelId(Integer levelId);
 

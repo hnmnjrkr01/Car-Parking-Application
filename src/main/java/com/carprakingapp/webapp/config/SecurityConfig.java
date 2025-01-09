@@ -31,19 +31,30 @@ public class SecurityConfig {
             // this is the list of URLS that require authentication to the website befroe the user can view the URL
             // this works on the idea .. that all URLS are accessable to everyone excpt for the ones listed here
             http.authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers("/customer/**").authenticated()
-                    .requestMatchers("/employee/**").authenticated()
+                    .requestMatchers("/User/**").authenticated()
+                    .requestMatchers("/Booking/**").authenticated()
                     // Allow all other requests without authentication
                     .anyRequest().permitAll()
             );
+
+
+//            http.authorizeHttpRequests((authorize) -> authorize
+//                    .anyRequest().authenticated()
+//                    .requestMatchers("/pub/**").permitAll()
+//                    .requestMatchers("/login/**").permitAll()
+//            );
 
             // this section specifies where our login page is
             http.formLogin(formLogin -> formLogin
                     // this is the URL for the login page ... this needs a controller method to listen and show the login page
                     // this is alnalagous to /customer and the page is login
                     .loginPage("/login/login")
+
                     // spring security has this controller method created for us already .. and we are just configuring the URL where it submits to
-                    .loginProcessingUrl("/login/loginSubmit"));
+                    .loginProcessingUrl("/login/loginSubmit")
+                            .defaultSuccessUrl("/index", true)
+//                    .successForwardUrl("/index")
+            );
 
             // this section is for configuing logout
             http.logout(formLogout -> formLogout

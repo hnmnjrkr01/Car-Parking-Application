@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserReviewDAO extends JpaRepository<UserReview, Integer> {
+public interface UserReviewDAO extends JpaRepository<UserReview, Long> {
 
     User findByUserId(Integer id);
 

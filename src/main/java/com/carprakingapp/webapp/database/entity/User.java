@@ -47,6 +47,13 @@ public class User {
 
     //------------------------------------------------------------
 
+    //--------------------One User can have Many UserRoleLinks---------
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<UserRoleLink> userRoleLinks;
+
+    //------------------------------------------------------------
+
 
     @Column(name="user_name")
     private String username;

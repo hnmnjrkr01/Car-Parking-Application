@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface BookingDAO extends JpaRepository<Booking, Integer> {
+public interface BookingDAO extends JpaRepository<Booking, Long> {
 
     Booking findByBookingId(Integer bookingId);
 

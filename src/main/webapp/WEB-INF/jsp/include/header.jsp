@@ -14,18 +14,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' type='text/css' href="/pub/css/globalStyleSheet.css">
-  <title>Header</title>
+  <title>CarParkingApplication - EasyPark </title>
   <!-- Add your CSS links or other head elements here -->
 </head>
 <body>
 <header>
   <h1>Welcome to QuickPark</h1>
   <nav>
-    <a href="#">Home</a>
+    <a href="/index">Home</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
-    <a href="User/signin">Sign Up</a>
-    <a href="login/loginPage">User Login</a>
+    <a href="User/signUp">Sign Up</a>
+    <a href="login/login">User Login</a>
     <a href="User/userSearch">User Search</a>
   </nav>
 </header>

@@ -32,7 +32,7 @@ public class UserDetailImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDAO.findByEmailIgnoreCase(username);
+        User user = userDAO.findByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("Username " + username + " not found");
@@ -43,8 +43,11 @@ public class UserDetailImpl implements UserDetailsService {
         boolean accountNonLocked = true;
         boolean credentialsNonExpired = true;
 
-
-        List<UserRole> userRoles = userRoleDAO.findByUserRoleId(user.getId());
+        //I need userId from userRoleLink create
+        // that entity and DAO
+        // then create a method in UreRole dao to fetch data from UerRoleLink table
+        //using Map<String , Object>
+        List<UserRole> userRoles = userRoleDAO.findUserRoleCodeByUserId(user.getId());
 
         // convert our user roles into spring granted authorities
         List<GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
@@ -64,8 +67,7 @@ public class UserDetailImpl implements UserDetailsService {
 
         // loop over our user roles from the database
         for (UserRole role : userRoles) {
-            // create a new simple granted authority for each user role in the databse
-
+            // create a new simple granted authority for each user role in the database
             SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleCode());
             authorities.add(authority);
         }

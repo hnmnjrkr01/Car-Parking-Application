@@ -1,7 +1,8 @@
 package com.carprakingapp.webapp.validation;
 
-import com.example.module309.database.entity.User;
-import com.example.module309.security.AuthenticatedUserService;
+
+import com.carprakingapp.webapp.database.entity.User;
+import com.carprakingapp.webapp.security.AuthenticatedUserService;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.apache.commons.lang3.StringUtils;

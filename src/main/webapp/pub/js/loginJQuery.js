@@ -13,7 +13,7 @@ function submitMethod(event) {
         $("#passwordLabel").css("color", "red");
         $("#emptyError").text(errorMsg).css("color", "red");
     } else {
-        alert("Welcome " + email);
+       // alert("Welcome " + email);
         $("#emptyError").hide;
     }
 

@@ -33,6 +33,12 @@ public class UserRole {
         this.roleDescription = roleDescription;
     }
 
+    //-----------One User-Role can have Many UserRoleLink-------------
+
+    @OneToMany(mappedBy = "userRole", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<UserRoleLink> userRoleLinks;
+
+    //---------------------------------------------------------------
 
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

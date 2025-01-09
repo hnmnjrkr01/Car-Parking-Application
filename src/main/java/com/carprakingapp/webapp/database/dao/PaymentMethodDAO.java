@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PaymentMethodDAO extends JpaRepository<PaymentMethod, Integer> {
+public interface PaymentMethodDAO extends JpaRepository<PaymentMethod, Long> {
 
     PaymentMethod findByPaymentId(Integer paymentId);
 
