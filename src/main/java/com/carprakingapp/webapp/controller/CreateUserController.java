@@ -1,6 +1,5 @@
 package com.carprakingapp.webapp.controller;
 
-
 import com.carprakingapp.webapp.database.dao.UserDAO;
 import com.carprakingapp.webapp.database.entity.User;
 import com.carprakingapp.webapp.formBean.UserDTO;
@@ -25,8 +24,8 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("/User")
-public class UserController {
+@RequestMapping("/login")
+public class CreateUserController {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 
@@ -36,78 +35,28 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     @Autowired
     private AuthenticatedUserService authenticatedUserService;
-
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/userSearch")
-    public ModelAndView userSearch(){
-
-        ModelAndView response = new ModelAndView();
-
-        response.setViewName("User/userSearch");
-
-        return response;
-    }
-
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/searchUserByLastname")
-    public ModelAndView searchUserByLastname(@RequestParam(required = false) String lastname){
-        ModelAndView response = new ModelAndView();
-
-        response.setViewName("User/foundUsers");
-
-        if(!lastname.isEmpty()) {
-            response.addObject("lastname", lastname);
-            List<User> userList = userDAO.findByLastname(lastname);
-            response.addObject("userList", userList);
-
-        }else{
-            response.addObject("username", "null");
-        }
-        return response;
-    }
-
-
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/edit/{id}")
-    public ModelAndView editUser(@PathVariable Integer userId){
-        ModelAndView response = new ModelAndView();
-
-        response.setViewName("signUp");
-
-        if(!userId.equals(null)) {
-
-            User user = userDAO.findById(userId);
-
-
-        }else{
-            response.addObject("username", "null");
-        }
-        return response;
-    }
-
 
     @GetMapping("/signUp")
     public ModelAndView loadSignIn(){
 
         ModelAndView response = new ModelAndView();
-        response.setViewName("User/signUp");
+        response.setViewName("login/createUser");
 
         return response;
 
 
     }
 
-
-
     @PostMapping("/createUser")
     public ModelAndView createUser(@Valid UserDTO userDTO,
                                    BindingResult bindingResult,
-                                     HttpSession session){
+                                   HttpSession session){
 
         ModelAndView response = new ModelAndView();
-        response.setViewName("User/signUp");
+        response.setViewName("login/createUser");
 
         if(bindingResult.hasErrors()) {
             response.addObject("bindingResult", bindingResult);
@@ -118,7 +67,7 @@ public class UserController {
                 newUser = new User();
             }
 
-        //----Checking the the password and confirm password should match--------------------
+            //----Checking the the password and confirm password should match--------------------
             if(StringUtils.equals(userDTO.getPassword(), userDTO.getConfirmPassword())) {
 
                 String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
@@ -126,7 +75,7 @@ public class UserController {
             }else{
                 bindingResult.rejectValue("confirmPassword", "error", "passwords do not match");
             }
-        //----------------------------------------------------------------------------------
+            //----------------------------------------------------------------------------------
             newUser.setUsername(userDTO.getUsername());
             newUser.setFirstname(userDTO.getFirstname());
             newUser.setLastname(userDTO.getLastname());
@@ -144,9 +93,4 @@ public class UserController {
 
         return response;
     }
-
-
-
-
-
 }

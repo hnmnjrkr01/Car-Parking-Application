@@ -142,7 +142,7 @@
 <div class="hero" style="background-image: url('/pub/images/image2.jpg');">
     <h2>Your Parking Solution Made Easy</h2>
     <p>Find the best parking spots in the city with our reliable and convenient parking services. Book your spot now and save time!</p>
-    <a href="signin.html">Sign In to Book</a>
+    <a href="User/signUp">Sign In to Book</a>
 </div>
 
 <div class="rate-container">

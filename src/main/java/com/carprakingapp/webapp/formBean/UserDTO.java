@@ -20,13 +20,13 @@ public class UserDTO {
     @NotEmpty(message = "Username must be provided.")
     private String username;
 
-    @CurrentPasswordValid()
+
     @Length(min=8, message = "Password minimum length is 8 characters.")
     @Length(max=15, message = "Password maximum length is 15 characters.")
     @NotEmpty(message = "Password must be provided.")
     private String password;
 
-    @CurrentPasswordValid
+
     @Length(min=8, message = "Password minimum length is 8 characters.")
     @Length(max=15, message = "Password maximum length is 15 characters.")
     @NotEmpty(message = "Confirm your password.")

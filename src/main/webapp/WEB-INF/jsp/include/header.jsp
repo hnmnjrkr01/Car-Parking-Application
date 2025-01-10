@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,22 +16,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' type='text/css' href="/pub/css/globalStyleSheet.css">
   <title>CarParkingApplication - EasyPark </title>
-  <!-- Add your CSS links or other head elements here -->
+
 </head>
 <body>
 <header>
   <h1>Welcome to QuickPark</h1>
   <nav>
+
+
     <a href="/index">Home</a>
+
+
     <a href="#about">About</a>
+
+
     <a href="#contact">Contact</a>
-    <a href="User/signUp">Sign Up</a>
+
+    <sec:authorize access="!isAuthenticated()">
+    <a href="login/signUp">Sign Up</a>
+
     <a href="login/login">User Login</a>
+    </sec:authorize>
+
+    <a href="login/logout">Logout</a>
+
+    <sec:authorize access="hasAuthority('ADMIN')">
     <a href="User/userSearch">User Search</a>
+    </sec:authorize>
   </nav>
 </header>
 </body>
 </html>
-
-
-

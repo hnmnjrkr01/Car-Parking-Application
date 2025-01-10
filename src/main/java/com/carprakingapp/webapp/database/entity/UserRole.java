@@ -41,13 +41,13 @@ public class UserRole {
     //---------------------------------------------------------------
 
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "user_role_link",
-            joinColumns = {
-                    @JoinColumn(name = "user_role_id", referencedColumnName = "user_role_id",
-                            nullable = false, updatable = false, insertable = false)},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "user_id", referencedColumnName = "id",
-                            nullable = false, updatable = false, insertable = false)})
-    private List<User> users;
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+//    @JoinTable(name = "user_role_link",
+//            joinColumns = {
+//                    @JoinColumn(name = "user_role_id", referencedColumnName = "user_role_id",
+//                            nullable = false, updatable = false, insertable = false)},
+//            inverseJoinColumns = {
+//                    @JoinColumn(name = "user_id", referencedColumnName = "id",
+//                            nullable = false, updatable = false, insertable = false)})
+//    private List<User> users;
 }

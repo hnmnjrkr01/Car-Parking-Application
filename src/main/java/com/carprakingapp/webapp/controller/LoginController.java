@@ -53,6 +53,7 @@ public class LoginController {
         return response;
     }
 
+
     // WE ARE DOING THIS AS A POST NOT A GET
     @PostMapping("/login/signupSubmit")
     public ModelAndView signupSubmit(@Valid UserDTO userDTO, BindingResult bindingResult, HttpSession session) {

@@ -46,8 +46,11 @@ public class UserDetailImpl implements UserDetailsService {
         //I need userId from userRoleLink create
         // that entity and DAO
         // then create a method in UreRole dao to fetch data from UerRoleLink table
-        //using Map<String , Object>
-        List<UserRole> userRoles = userRoleDAO.findUserRoleCodeByUserId(user.getId());
+        //using
+//        List<UserRole> userRoles = userRoleDAO.findByUserRoleId(user.getId());
+        List<UserRole> userRoles = userRoleDAO.findUserRoleByUserId(user.getId());
+
+
 
         // convert our user roles into spring granted authorities
         List<GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
@@ -71,6 +74,8 @@ public class UserDetailImpl implements UserDetailsService {
             SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleCode());
             authorities.add(authority);
         }
+
+
 
         return authorities;
     }
