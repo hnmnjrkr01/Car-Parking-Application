@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="javaScripts/loginJQuery.js"></script>
-    <title>User Search - EasyPark</title>
+    <title>EasyPark</title>
 </head>
 
 
 <body>
 
-<jsp:include page="/WEB-INF/jsp/include/header.jsp"/>
+<jsp:include page="../include/header.jsp"/>
 
 <div class="form-container" >
     <h2>Search User</h2>
@@ -38,7 +38,7 @@
 
 </div>
 
-<jsp:include page="/WEB-INF/jsp/include/footer.jsp"/>
+<jsp:include page="../include/footer.jsp"/>
 
 </body>
 

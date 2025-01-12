@@ -13,7 +13,7 @@ public interface BookingDAO extends JpaRepository<Booking, Long> {
 
     Booking findByBookingId(Integer bookingId);
 
-    Booking findByUserId(Integer userId);
+    List<Booking> findByUserId(Integer userId);
 
     Booking findBylicensePlateNumber(String licensePlateNumber);
 

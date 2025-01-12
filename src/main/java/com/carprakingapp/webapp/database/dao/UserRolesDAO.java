@@ -12,9 +12,9 @@ import java.util.Map;
 @Repository
 public interface UserRolesDAO extends JpaRepository<UserRole, Long> {
 
+    UserRole findByUserRoleId(Integer id);
 
-
-    List<UserRole> findByUserRoleId(Integer userRoleId);
+//    List<UserRole> findByUserRoleId(Integer userRoleId);
 
     @Query(value = "select ur.* " +
             "from user_roles ur, user_role_link url, users u " +

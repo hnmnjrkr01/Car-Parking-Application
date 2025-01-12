@@ -13,29 +13,29 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Controller
-@RequestMapping("/booking")
+@RequestMapping("/Booking")
 public class BookingController {
 
     @Autowired
     private BookingDAO bookingDAO;
 
 
-    @GetMapping("/Booking/booking")
-    public ModelAndView booking(){
+//    @GetMapping("/parkingBooking")
+//    public ModelAndView booking(){
+//
+//        ModelAndView response = new ModelAndView();
+//
+//        response.setViewName("Booking/parkingBooking");
+//
+//        return response;
+//    }
 
-        ModelAndView response = new ModelAndView();
-
-        response.setViewName("/Booking/booking");
-
-        return response;
-    }
-
-    @GetMapping("/Booking/searchBooking")
+    @GetMapping("/searchBooking")
     public ModelAndView searchBooking(@RequestParam Integer bookingId ){
 
         ModelAndView response = new ModelAndView();
 
-        response.setViewName("/Booking/booking");
+        response.setViewName("parkingBooking");
 
         response.addObject("bookingId", bookingId);
 

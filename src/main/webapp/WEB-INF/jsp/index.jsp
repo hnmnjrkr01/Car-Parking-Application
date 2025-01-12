@@ -110,26 +110,6 @@
             color: #fff;
             padding: 15px;
         }
-
-        .faq {
-            margin-bottom: 15px;
-        }
-        .question {
-
-            color: white;
-            padding: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-        .answer {
-            display: none;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-
-        }
-
     </style>
 
 
@@ -148,14 +128,14 @@
 <div class="rate-container">
     <div class="foundUsers">
         <h1>Check Availability</h1>
-        <form id="bookingForm" action="Booking.html">
+        <form action="">
             <table>
                 <tr class="form-group">
                     <td>
                         <label for="startParkingTime">From Date and Time</label>
                     </td>
                     <td>
-                        <input type="datetime-local" id="startParkingTime" name="startParkingTime" required>
+                        <input type="datetime-local" id="startParkingTime" name="startParkingTime" >
                     </td>
                 </tr>
                 <tr class="form-group">
@@ -163,7 +143,7 @@
                         <label for="endParkingTime">To Date and Time </label>
                     </td>
                     <td>
-                        <input type="datetime-local" id="endParkingTime" name="endParkingTime" required>
+                        <input type="datetime-local" id="endParkingTime" name="endParkingTime" >
                     </td>
                 </tr>
                 <tr>
@@ -211,43 +191,9 @@
 
 <br><br><br>
 
-<div style="align-items: center;">
-    <h1>Frequently Asked Questions</h1>
-
-    <div class="faq">
-        <div class="question">1. How do I find a parking spot near me?</div>
-        <div class="answer">You can use our website or mobile app to search for available parking spots in your area.
-            Simply enter your location or the address of your destination, and we'll show you nearby options.</div>
-    </div>
-
-    <div class="faq">
-        <div class="question">2. Can I reserve a parking space in advance?</div>
-        <div class="answer">Yes, you can reserve a parking spot in advance using our website or app.
-            Choose your preferred location, time, and duration, and we'll ensure a spot is available when you arrive.</div>
-    </div>
-
-    <div class="faq">
-        <div class="question">3. How do I pay for parking?</div>
-        <div class="answer">We offer multiple payment options, including credit/debit cards, mobile wallets, and in-app payments. You can pay directly through our website or app when reserving a spot or upon arrival at the parking facility.</div>
-    </div>
-
-    <div class="faq">
-        <div class="question">4. Is my payment refundable if I cancel my reservation?</div>
-        <div class="answer">Cancellation policies vary depending on the parking provider. Please check the terms and conditions when making a reservation. Typically, cancellations made in advance may qualify for a partial refund.</div>
-    </div>
-</div>
 
 <jsp:include page="include/footer.jsp"/>
 
 
 </body>
-
-<script>
-    document.querySelectorAll('.question').forEach(function (question) {
-        question.addEventListener('click', function () {
-            const answer = this.nextElementSibling;
-            answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
-        });
-    });
-</script>
 </html>

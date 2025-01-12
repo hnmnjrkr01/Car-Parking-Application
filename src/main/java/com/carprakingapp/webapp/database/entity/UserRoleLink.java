@@ -45,6 +45,10 @@ public class UserRoleLink {
     //------------------------------------------------------------
 
 
+    public UserRoleLink( User user, UserRole userRole) {
+        this.user = user;
+        this.userRole = userRole;
+    }
 
 
 

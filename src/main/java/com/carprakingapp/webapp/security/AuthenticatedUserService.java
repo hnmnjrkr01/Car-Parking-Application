@@ -52,7 +52,8 @@ public class AuthenticatedUserService {
     public User loadCurrentUser() {
         String username = getCurrentUsername();
         if (username != null) {
-            return userDao.findByUsername(username);
+//            return userDao.findByUsername(username);
+            return userDao.findByEmail(username);
         }
         return null;
     }

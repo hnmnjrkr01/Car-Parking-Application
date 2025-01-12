@@ -20,30 +20,39 @@
 </head>
 <body>
 <header>
-  <h1>Welcome to QuickPark</h1>
+  <h1>Welcome to EasyPark</h1>
   <nav>
 
 
     <a href="/index">Home</a>
 
 
-    <a href="#about">About</a>
+    <a href="/OtherPages/about">About</a>
 
 
-    <a href="#contact">Contact</a>
+    <a href="/OtherPages/contactUs">Contact</a>
+
+
+    <a href="/User/userDashboard">Dashboard</a>
+
+
 
     <sec:authorize access="!isAuthenticated()">
-    <a href="login/signUp">Sign Up</a>
+    <a href="/User/signUp">Sign Up</a>
 
-    <a href="login/login">User Login</a>
+    <a href="/login/login">User Login</a>
     </sec:authorize>
 
-    <a href="login/logout">Logout</a>
+    <a href="/login/logout">Logout</a>
 
     <sec:authorize access="hasAuthority('ADMIN')">
-    <a href="User/userSearch">User Search</a>
+    <a href="/User/userSearch">User Search</a>
     </sec:authorize>
+
+
   </nav>
+
+
 </header>
 </body>
 </html>

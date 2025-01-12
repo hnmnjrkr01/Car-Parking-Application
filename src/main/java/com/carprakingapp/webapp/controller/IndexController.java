@@ -17,8 +17,6 @@ public class IndexController {
     public ModelAndView homepage() {
         ModelAndView response = new ModelAndView();
         response.setViewName("HomePage");
-
-
         return response;
     }
 
@@ -26,9 +24,23 @@ public class IndexController {
     public ModelAndView index() {
         ModelAndView response = new ModelAndView();
         response.setViewName("index");
-
-
         return response;
     }
+
+    @GetMapping(value = "/OtherPages/about")
+    public ModelAndView about() {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("OtherPages/about");
+        return response;
+    }
+
+    @GetMapping(value = "/OtherPages/contactUs")
+    public ModelAndView contactUs() {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("OtherPages/contactUs");
+        return response;
+    }
+
+
 
 }

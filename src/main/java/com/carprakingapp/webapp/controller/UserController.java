@@ -5,6 +5,7 @@ import com.carprakingapp.webapp.database.dao.UserDAO;
 import com.carprakingapp.webapp.database.entity.User;
 import com.carprakingapp.webapp.formBean.UserDTO;
 import com.carprakingapp.webapp.security.AuthenticatedUserService;
+import com.carprakingapp.webapp.services.IUserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +30,13 @@ import java.util.List;
 public class UserController {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
+    private static String DUMMY_VALUE = "DUMMYVALUE";
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private IUserService userService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -68,22 +73,70 @@ public class UserController {
         return response;
     }
 
+    @GetMapping("/editUser")
+    public ModelAndView editUser(){
+
+        ModelAndView response = new ModelAndView();
+        response.setViewName("User/editUser");
+
+        return response;
+    }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/edit/{id}")
+    @GetMapping("/edit/{userId}")
     public ModelAndView editUser(@PathVariable Integer userId){
         ModelAndView response = new ModelAndView();
 
-        response.setViewName("signUp");
+        response.setViewName("User/editUser");
 
-        if(!userId.equals(null)) {
+        if(userId != null) {
 
             User user = userDAO.findById(userId);
+            UserDTO userDTO = new UserDTO();
+
+            userDTO.setId(user.getId());
+            userDTO.setUsername(this.DUMMY_VALUE);
+            userDTO.setPassword(this.DUMMY_VALUE);
+            userDTO.setConfirmPassword(this.DUMMY_VALUE);
+            userDTO.setFirstname(user.getFirstname());
+            userDTO.setLastname(user.getLastname());
+            userDTO.setEmail(user.getEmail());
+            userDTO.setPhone(user.getPhone());
+
+            //once data is Edited in Jsp page set the data back in databasE
+            response.addObject("userDTO", userDTO);
 
 
         }else{
-            response.addObject("username", "null");
+            //bindingResult.rejectValue();
         }
+        return response;
+    }
+
+    @PostMapping("/editSubmit")
+    public ModelAndView editSubmit(@Valid UserDTO userDTO, BindingResult bindingResult){
+        ModelAndView response = new ModelAndView();
+
+        response.setViewName("User/editUser");
+
+        if(bindingResult.hasErrors()) {
+
+            response.addObject("bindingResult", bindingResult);
+            response.addObject("userDTO", userDTO);
+        }else {
+
+            User user = userDAO.findById(userDTO.getId());
+
+            user.setFirstname(userDTO.getFirstname());
+            user.setLastname(userDTO.getLastname());
+            user.setEmail(userDTO.getEmail());
+            user.setPhone(userDTO.getPhone());
+
+            userDAO.save(user);
+
+        }
+//        response.setViewName("OtherPages/success");
+
         return response;
     }
 
@@ -100,50 +153,15 @@ public class UserController {
     }
 
 
-
-    @PostMapping("/createUser")
-    public ModelAndView createUser(@Valid UserDTO userDTO,
-                                   BindingResult bindingResult,
-                                     HttpSession session){
-
+    @GetMapping("/myself/{loggedUserId}")
+    public ModelAndView edit(@PathVariable Integer loggedUserId){
         ModelAndView response = new ModelAndView();
         response.setViewName("User/signUp");
-
-        if(bindingResult.hasErrors()) {
-            response.addObject("bindingResult", bindingResult);
-            response.addObject("userDTO", userDTO);
-        }else{
-            User newUser = userDAO.findByUsername(userDTO.getUsername());
-            if(newUser == null) {
-                newUser = new User();
-            }
-
-        //----Checking the the password and confirm password should match--------------------
-            if(StringUtils.equals(userDTO.getPassword(), userDTO.getConfirmPassword())) {
-
-                String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
-                newUser.setPassword(encryptedPassword);
-            }else{
-                bindingResult.rejectValue("confirmPassword", "error", "passwords do not match");
-            }
-        //----------------------------------------------------------------------------------
-            newUser.setUsername(userDTO.getUsername());
-            newUser.setFirstname(userDTO.getFirstname());
-            newUser.setLastname(userDTO.getLastname());
-            newUser.setPhone(userDTO.getPhone());
-            newUser.setEmail(userDTO.getEmail());
-
-            userDAO.save(newUser);
-
-            LOG.info("User created: " + newUser.toString());
-
-            authenticatedUserService.changeLoggedInUsername(session,userDTO.getUsername(),userDTO.getPassword());
-
-            response.setViewName("redirect:/");
-        }
-
+        User userDTO = userDAO.findById(loggedUserId);
+        response.addObject("userDTO", userDTO);
         return response;
     }
+
 
 
 

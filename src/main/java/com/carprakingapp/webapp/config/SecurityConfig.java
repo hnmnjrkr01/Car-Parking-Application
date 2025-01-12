@@ -31,7 +31,7 @@ public class SecurityConfig {
             // this is the list of URLS that require authentication to the website befroe the user can view the URL
             // this works on the idea .. that all URLS are accessable to everyone excpt for the ones listed here
             http.authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers("/User/**").authenticated()
+                    .requestMatchers("/User/userSearch").authenticated()
                     .requestMatchers("/Booking/**").authenticated()
                     // Allow all other requests without authentication
                     .anyRequest().permitAll()
@@ -52,7 +52,7 @@ public class SecurityConfig {
 
                     // spring security has this controller method created for us already .. and we are just configuring the URL where it submits to
                     .loginProcessingUrl("/login/loginSubmit")
-                            .defaultSuccessUrl("/index", true)
+                            .defaultSuccessUrl("/User/userDashboard", true)
 //                    .successForwardUrl("/index")
             );
 

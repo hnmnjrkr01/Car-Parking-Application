@@ -18,6 +18,9 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px 40px 20px 40px;
     margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 180px;
     max-width: 600px;
     width: 100%;
     float: inherit;
@@ -59,7 +62,7 @@
 
 <div class="foundUsers" >
   <h2>Found Users</h2>
-  <form action="/User/signUp" method="post">
+  <form action="/User/editUser">
     <table  >
     <tr>
       <th>Firstname</th>

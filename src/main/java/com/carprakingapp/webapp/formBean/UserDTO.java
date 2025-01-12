@@ -1,8 +1,7 @@
 package com.carprakingapp.webapp.formBean;
 
-import com.carprakingapp.webapp.validation.CurrentPasswordValid;
+
 import com.carprakingapp.webapp.validation.EmailUnique;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +13,8 @@ import org.hibernate.validator.constraints.Length;
 @ToString
 
 public class UserDTO {
+
+    private Integer id;
 
     @Pattern(regexp="^[A-Za-z0-9]+$")
     @Length(min=5, max=10 , message = "Username length must be 5 to 10 characters.")

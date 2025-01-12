@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - EasyPark</title>
+    <title>EasyPark</title>
 </head>
 
 
@@ -26,7 +26,7 @@
 
 <div class="form-container">
     <h2>Sign Up</h2>
-    <form action="/User/createUser" method="post">
+    <form action="/User/signupSubmit" method="post">
         <table>
 
             <tr>
@@ -34,8 +34,8 @@
                     <lable for="username">User-Name</lable>
                 </td>
                 <td>
-                    <input type="hidden" name="id" value="${user.id}">
-                    <input type="text" id = "username" name="username" placeholder="User Name" value="${user.username}">
+                    <input type="hidden" name="id" value="${userDTO.id}">
+                    <input type="text" id = "username" name="username" placeholder="User Name" value="${userDTO.username}">
 
                 <c:if test="${bindingResult.hasFieldErrors('username')}">
                     <c:forEach var="error" items="${bindingResult.getFieldErrors('username')}">
@@ -49,7 +49,7 @@
                     <label for="password">Password</label>
                 </td>
                 <td>
-                    <input type="password" id="password" name="password" value="${user.password}" placeholder="Password" >
+                    <input type="password" id="password" name="password" value="${userDTO.password}" placeholder="Password" >
 
                 <c:if test="${bindingResult.hasFieldErrors('password')}">
                     <c:forEach var="error" items="${bindingResult.getFieldErrors('password')}">
@@ -77,7 +77,7 @@
                     <lable for="firstname">First Name</lable>
                 </td>
                 <td>
-                    <input type="text" id="firstname"name="firstname" placeholder="First Name" value="${user.firstname}">
+                    <input type="text" id="firstname"name="firstname" placeholder="First Name" value="${userDTO.firstname}">
 
                 <c:if test="${bindingResult.hasFieldErrors('firstname')}">
                     <c:forEach var="error" items="${bindingResult.getFieldErrors('firstname')}">
@@ -91,7 +91,7 @@
                     <lable for="lastname">Last Name</lable>
                 </td>
                 <td>
-                    <input type="text" id="lastname" name="lastname" placeholder="Last Name" value="${user.lastname}" >
+                    <input type="text" id="lastname" name="lastname" placeholder="Last Name" value="${userDTO.lastname}" >
 
                 <c:if test="${bindingResult.hasFieldErrors('lastname')}">
                     <c:forEach var="error" items="${bindingResult.getFieldErrors('lastname')}">
@@ -105,7 +105,7 @@
                     <label for="phone">Contact Number</label>
                 </td>
                 <td>
-                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" value="${user.phone}" >
+                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" value="${userDTO.phone}" >
 
                 <c:if test="${bindingResult.hasFieldErrors('phone')}">
                     <c:forEach var="error" items="${bindingResult.getFieldErrors('phone')}">
@@ -119,7 +119,7 @@
                     <label for="email">Email</label>
                 </td>
                 <td>
-                    <input type="email" id="email" name="email" placeholder="Email" value="${user.email}">
+                    <input type="email" id="email" name="email" placeholder="Email" value="${userDTO.email}">
 
                 <c:if test="${bindingResult.hasFieldErrors('email')}">
                     <c:forEach var="error" items="${bindingResult.getFieldErrors('email')}">

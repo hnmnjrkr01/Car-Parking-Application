@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +33,7 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="password">Password</label></td>
+                <td><label for="password">Password: </label></td>
                 <td>
                     <input type="password" id="password" name="password" placeholder="Password">
                 </td>
