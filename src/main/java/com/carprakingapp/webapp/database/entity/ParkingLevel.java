@@ -28,8 +28,8 @@ public class ParkingLevel {
     //--------------------------------------------------------------
 
 
-    @Column(name = "level_code")
-    private Character levelCode;
+    @Column(name = "level_code", columnDefinition = "Char")
+    private String levelCode;
 
     @Column(name = "max_capacity")
     private int MaximumCapacity;

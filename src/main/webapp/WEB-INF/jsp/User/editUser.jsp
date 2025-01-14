@@ -31,10 +31,10 @@
 
       <tr>
         <td>
-          <input type="hidden" name="id" value="${userDTO.id}">
-          <input type="hidden" name="username" value="${userDTO.username}">
-          <input type="hidden" name="password" value="${userDTO.password}">
-          <input type="hidden" name="confirmPassword" value="${userDTO.confirmPassword}">
+          <input type="hidden" name="id" value="${userEditDTO.id}">
+          <input type="hidden" name="username" value="${userEditDTO.username}">
+          <input type="hidden" name="password" value="${userEditDTO.password}">
+          <input type="hidden" name="confirmPassword" value="${userEditDTO.confirmPassword}">
 
       </tr>
       <tr>
@@ -42,7 +42,7 @@
           <lable for="firstname">First Name</lable>
         </td>
         <td>
-          <input type="text" id="firstname"name="firstname" placeholder="First Name" value="${userDTO.firstname}">
+          <input type="text" id="firstname"name="firstname" placeholder="First Name" value="${userEditDTO.firstname}">
 
           <c:if test="${bindingResult.hasFieldErrors('firstname')}">
             <c:forEach var="error" items="${bindingResult.getFieldErrors('firstname')}">
@@ -56,7 +56,7 @@
           <lable for="lastname">Last Name</lable>
         </td>
         <td>
-          <input type="text" id="lastname" name="lastname" placeholder="Last Name" value="${userDTO.lastname}" >
+          <input type="text" id="lastname" name="lastname" placeholder="Last Name" value="${userEditDTO.lastname}" >
 
           <c:if test="${bindingResult.hasFieldErrors('lastname')}">
             <c:forEach var="error" items="${bindingResult.getFieldErrors('lastname')}">
@@ -70,7 +70,7 @@
           <label for="phone">Contact Number</label>
         </td>
         <td>
-          <input type="tel" id="phone" name="phone" placeholder="Phone Number" value="${userDTO.phone}" >
+          <input type="tel" id="phone" name="phone" placeholder="Phone Number" value="${userEditDTO.phone}" >
 
           <c:if test="${bindingResult.hasFieldErrors('phone')}">
             <c:forEach var="error" items="${bindingResult.getFieldErrors('phone')}">
@@ -84,7 +84,7 @@
           <label for="email">Email</label>
         </td>
         <td>
-          <input type="email" id="email" name="email" placeholder="Email" value="${userDTO.email}">
+          <input type="email" id="email" name="email" placeholder="Email" value="${userEditDTO.email}">
 
           <c:if test="${bindingResult.hasFieldErrors('email')}">
             <c:forEach var="error" items="${bindingResult.getFieldErrors('email')}">

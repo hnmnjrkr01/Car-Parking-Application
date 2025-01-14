@@ -5,10 +5,7 @@ import com.carprakingapp.webapp.database.dao.BookingDAO;
 import com.carprakingapp.webapp.database.dao.ParkingLevelDAO;
 import com.carprakingapp.webapp.database.dao.PaymentMethodDAO;
 import com.carprakingapp.webapp.database.dao.UserDAO;
-import com.carprakingapp.webapp.database.entity.Booking;
-import com.carprakingapp.webapp.database.entity.ParkingLevel;
-import com.carprakingapp.webapp.database.entity.PaymentMethod;
-import com.carprakingapp.webapp.database.entity.User;
+import com.carprakingapp.webapp.database.entity.*;
 import com.carprakingapp.webapp.formBean.UserDTO;
 import com.carprakingapp.webapp.security.AuthenticatedUserService;
 import jakarta.servlet.http.HttpSession;
@@ -42,12 +39,6 @@ public class LoginController {
     private BookingDAO bookingDao;
 
     @Autowired
-    private PaymentMethodDAO paymentMethodDao;
-
-    @Autowired
-    private ParkingLevelDAO parkingLevelDAO;
-
-    @Autowired
     private AuthenticatedUserService authenticatedUserService;
 
 
@@ -72,11 +63,6 @@ public class LoginController {
         List<Booking> booking = bookingDao.findByUserId(loggedUser.getId());
         response.addObject("booking", booking);
 
-//        PaymentMethod paymentMethod = paymentMethodDao.findByPaymentId(booking.getPaymentMethodId());
-//        response.addObject("paymentMethod", paymentMethod);
-//
-//        ParkingLevel parkingLevel = parkingLevelDAO.findByLevelId(booking.getLevelId());
-//        response.addObject("parkingLevel", parkingLevel);
         return response;
     }
 

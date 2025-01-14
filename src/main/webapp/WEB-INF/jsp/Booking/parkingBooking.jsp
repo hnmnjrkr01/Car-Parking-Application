@@ -6,12 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <jsp:include page="../include/header.jsp"/>
 
+
 <div class="form-container" >
     <h1>Parking Booking</h1>
-    <form id="bookingForm">
+    <form action="/Booking/bookNewParking" method="post">
         <div style="padding-right: 40px; ">
             <table>
                 <tr>
@@ -20,6 +23,11 @@
                     </td>
                     <td>
                         <input type="datetime-local" id="StarDateTime" name="StarDateTime" placeholder="From">
+                        <c:if test="${bindingResult.hasFieldErrors('StarDateTime')}">
+                            <c:forEach var="error" items="${bindingResult.getFieldErrors('StarDateTime')}">
+                                <div class="input_error">${error.getDefaultMessage()}</div>
+                            </c:forEach>
+                        </c:if>
                     </td>
                 </tr>
                 <tr>
@@ -28,6 +36,11 @@
                     </td>
                     <td>
                         <input type="datetime-local" id="EndDateTime" name="EndDateTime" placeholder="To" >
+                        <c:if test="${bindingResult.hasFieldErrors('EndDateTime')}">
+                            <c:forEach var="error" items="${bindingResult.getFieldErrors('EndDateTime')}">
+                                <div class="input_error">${error.getDefaultMessage()}</div>
+                            </c:forEach>
+                        </c:if>
                     </td>
                 </tr>
                 <tr>
@@ -35,37 +48,30 @@
                         <label for="licensePlateNumber">License Plate No</label>
                     </td>
                     <td>
-                        <input type="number" id="licensePlateNumber" name="licensePlateNumber" placeholder="license Plate Number">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <label for="duration">Duration</label>
-                    </td>
-                    <td>
-                        <input type="text" id="duration" name="duration" placeholder="Duration">
+                        <input type="TEXT" id="licensePlateNumber" name="licensePlateNumber" placeholder="license Plate Number">
+                        <c:if test="${bindingResult.hasFieldErrors('licensePlateNumber')}">
+                            <c:forEach var="error" items="${bindingResult.getFieldErrors('licensePlateNumber')}">
+                                <div class="input_error">${error.getDefaultMessage()}</div>
+                            </c:forEach>
+                        </c:if>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="totalPrice">Total Price</label>
+                        <label for="levelId">Parking Level</label>
                     </td>
                     <td>
-                        <input type="text" id="totalPrice" name="totalPrice" placeholder="Total Price">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="leveId">Parking Level</label>
-                    </td>
-                    <td>
-                        <select id="leveId" name="leveId" style="height: 40px; width: 300px;">
+                        <select id="levelId" name="levelId" style="height: 40px; width: 300px;">
                             <option>Select a Parking Floor</option>
-                            <option value="LVL1">Floor-1</option>
-                            <option value="LVL2">Floor-2</option>
-                            <option value="LVL3">Floor-3</option>
+                            <option value="1">Floor-1</option>
+                            <option value="2">Floor-2</option>
+                            <option value="3">Floor-3</option>
                         </select>
+                        <c:if test="${bindingResult.hasFieldErrors('levelId')}">
+                            <c:forEach var="error" items="${bindingResult.getFieldErrors('levelId')}">
+                                <div class="input_error">${error.getDefaultMessage()}</div>
+                            </c:forEach>
+                        </c:if>
                     </td>
                 </tr>
                 <tr></tr> <tr></tr><tr></tr> <tr></tr> <tr></tr><tr></tr>
@@ -81,13 +87,18 @@
                             <option value="cheq">Cheque</option>
                             <option value="venmo">Venmo</option>
                         </select>
+                        <c:if test="${bindingResult.hasFieldErrors('paymentMethod')}">
+                            <c:forEach var="error" items="${bindingResult.getFieldErrors('paymentMethod')}">
+                                <div class="input_error">${error.getDefaultMessage()}</div>
+                            </c:forEach>
+                        </c:if>
                     </td>
                 </tr>
 
                <tr></tr> <tr></tr><tr></tr> <tr></tr> <tr></tr><tr></tr>
                 <tr>
                     <td colspan="2">
-                        <button type="submit" class="btn">Search</button>
+                        <button type="submit" class="btn">Book</button>
                     </td>
                 </tr>
             </table>
@@ -95,5 +106,10 @@
     </form>
 </div>
 
+<script>
+    var today = new Date().toISOString().slice(0, 16);
 
+    document.getElementsByName("StarDateTime")[0].min = today;
+    document.getElementsByName("EndDateTime")[0].min = today;
+</script>
 <jsp:include page="../include/footer.jsp"/>

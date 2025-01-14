@@ -11,98 +11,181 @@
 <jsp:include page="../include/header.jsp"/>
 
 <style>
-    .rate-container{
+    .rate-container {
         display: flex;
-        justify-content: flex-start;
-        padding-top: 30px;
+        justify-content: space-around;
+        padding-top: 10px;
     }
 
-    .foundUsers {
+    .preBookStyle {
         background-color: rgba(0, 0, 0, 0.8);
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 15px 40px 20px 40px;
+        padding: 15px 60px 40px 60px;
         margin: 10px;
-        max-width: 600px;
+        max-width: 750px;
         width: 100%;
         float: left;
 
     }
-    .foundUsers h2 {
+
+    .preBookStyle h2 {
         text-align: left;
         margin-bottom: 20px;
         font-size: 2rem;
     }
-    .foundUsers table {
+
+    .preBookStyle table {
         width: 100%;
         border-collapse: collapse;
         margin: 0 auto;
         color: #fff;
     }
-    .foundUsers table th, .foundUsers table td {
+
+    .preBookStyle table th, .preBookStyle table td {
         border: 1px solid #fff;
         padding: 10px;
         text-align: center;
     }
-    .foundUsers table th {
+
+    .preBookStyle table th {
         background-color: #f39c12;
     }
-    .foundUsers label {
+
+    .preBookStyle label {
         font-weight: bold;
         color: #fff;
         padding: 15px;
     }
+
+    input[type="datetime-local"], input[type="date"] {
+        width: 70%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #555;
+    }
+    .btn {
+        background-color: #f39c12;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1.2rem;
+    }
+    .btn:hover {
+        background-color: #e67e22;
+    }
+
+    a{
+        color: #fff;
+        font-size: 1.2rem;
+    }
+    a:hover{
+        color: #e67e22;
+    }
+
+
 </style>
 
 
-
 <h2 style="text-align: end;">Welcome, ${loggedUser.firstname}! <br>
-<a href="/User/myself/${loggedUser.id}">My-Profile</a>
+    <a href="/User/myself/${loggedUser.id}">Edit My-Profile</a> <br>
+    <a href="/Booking/parkingBooking">Book New Parking</a>
 </h2>
 <hr>
 
+
 <div class="rate-container">
-<div class="foundUsers">
-    <h2>Parking Rates</h2>
-    <table>
-        <tr>
-            <th>Booing-Id</th>
-            <th>Payment-Method</th>
-            <th>Floor-Level</th>
-            <th>Total-Price</th>
-            <th>Start Date & Time</th>
-            <th>End Date & Time</th>
-            <th>Duration</th>
-            <th>License PLate Number</th>
-        </tr>
-       <%-- <tr>
-            <td>${booking.bookingId}</td>
-        </tr>
-        <tr>
-            <td>${paymentMethod.paymentMethod}</td>
-        </tr>
-        <tr>
-            <td>${parkingLevel.levelCode}</td>
-        </tr>
-        <tr>
-            <td>${booking.totalPrice}</td>
-        </tr>
-        <tr>
-            <td>${booking.startDateTime}</td>
-        </tr>
-        <tr>
-            <td>${booking.endDateTime}</td>
-        </tr>
-        <tr>
-            <td>${booking.duration}</td>
-        </tr>
-        <tr>
-            <td>${booking.licensePlateNumber}</td>
-        </tr>
-        --%>
-    </table>
-</div>
+    <div class="preBookStyle">
+        <h2>Your Previous Bookings</h2>
+        <table>
+            <tr>
+                <th>Booing-Id</th>
+                <th>Payment-Method</th>
+                <th>Floor-Level</th>
+                <th>Total-Price</th>
+                <th>Start Date & Time</th>
+                <th>End Date & Time</th>
+                <th>Duration</th>
+                <th>License PLate Number</th>
+            </tr>
+            <c:forEach var="booking" items="${booking}">
+                <tr>
+                    <td>${booking.bookingId}</td>
+                    <td>${booking.paymentMethodId}</td>
+                    <td>${booking.levelId}</td>
+                    <td>${booking.totalPrice}</td>
+                    <td>${booking.startDateTime}</td>
+                    <td>${booking.endDateTime}</td>
+                    <td>${booking.duration}</td>
+                    <td>${booking.licensePlateNumber}</td>
+                </tr>
+            </c:forEach>
+        </table>
+
+
+    </div>
+
+
+    <div class="preBookStyle">
+        <h1>Check Availability</h1>
+        <form id="bookingForm" action="/Booking/availableSlots">
+            <table>
+                <tr class="form-group">
+                    <td>
+                        <label for="startParkingTime">From Date and Time</label>
+                    </td>
+                    <td>
+                        <input type="datetime-local" id="startParkingTime" name="startParkingTime" >
+                    </td>
+                </tr>
+                <tr class="form-group">
+                    <td>
+                        <label for="endParkingTime">To Date and Time </label>
+                    </td>
+                    <td>
+                        <input type="datetime-local" id="endParkingTime" name="endParkingTime">
+                    </td>
+                </tr>
+                <tr class="form-group">
+                    <td>
+                        <label for="availableSlots">Available Slots </label>
+                    </td>
+                    <td>
+                        <input id="availableSlots" name="availableSlots">
+                    </td>
+                </tr>
+                <tr></tr> <tr></tr><tr></tr> <tr></tr> <tr></tr><tr></tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="btn">Search</button>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+
+
+
+
+
+
 </div>
 
+
+
+
+
+
+<script>
+    var today = new Date().toISOString().slice(0, 16);
+
+    document.getElementsByName("startParkingTime")[0].min = today;
+    document.getElementsByName("endParkingTime")[0].min = today;
+
+</script>
 
 <jsp:include page="../include/footer.jsp"/>

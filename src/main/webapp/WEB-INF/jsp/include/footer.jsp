@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <footer>
-    <p>&copy; 2024 QuickPark. All rights reserved.</p>
+    <p>&copy; 2024 EasyPark. All rights reserved.</p>
     <p><u><Ri:a></Ri:a></u></p>
 </footer>
 </html>

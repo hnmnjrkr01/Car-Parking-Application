@@ -42,7 +42,7 @@ public class PaymentMethod {
 
     //-------------------------------------------------------------
 
-    @Column(name="payment_method" , columnDefinition = "ENUM")
+    @Column(name="payment_method", columnDefinition = "Char")
     private String paymentMethod;
 
     @Column(name="date_of_payment")

@@ -75,7 +75,7 @@
             padding-top: 30px;
         }
 
-        .foundUsers {
+        .preBookStyle {
             background-color: rgba(0, 0, 0, 0.8);
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -86,26 +86,26 @@
             float: left;
 
         }
-        .foundUsers h2 {
+        .preBookStyle h2 {
             text-align: left;
             margin-bottom: 20px;
             font-size: 2rem;
         }
-        .foundUsers table {
+        .preBookStyle table {
             width: 100%;
             border-collapse: collapse;
             margin: 0 auto;
             color: #fff;
         }
-        .foundUsers table th, .foundUsers table td {
+        .preBookStyle table th, .preBookStyle table td {
             border: 1px solid #fff;
             padding: 10px;
             text-align: center;
         }
-        .foundUsers table th {
+        .preBookStyle table th {
             background-color: #f39c12;
         }
-        .foundUsers label {
+        .preBookStyle label {
             font-weight: bold;
             color: #fff;
             padding: 15px;
@@ -126,9 +126,9 @@
 </div>
 
 <div class="rate-container">
-    <div class="foundUsers">
+    <div class="preBookStyle">
         <h1>Check Availability</h1>
-        <form action="">
+        <form id="bookingForm" action="/Booking/availableSlots">
             <table>
                 <tr class="form-group">
                     <td>
@@ -157,7 +157,7 @@
     </div>
 
 
-    <div class="foundUsers">
+    <div class="preBookStyle">
         <h2>Parking Rates</h2>
         <table>
             <tr>
@@ -194,6 +194,26 @@
 
 <jsp:include page="include/footer.jsp"/>
 
+<script>
+    var today = new Date().toISOString().slice(0, 16);
 
-</body>
-</html>
+    document.getElementsByName("startParkingTime")[0].min = today;
+    document.getElementsByName("endParkingTime")[0].min = today;
+
+    document.getElementById("bookingForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const parkingFromDateTime = document.getElementById("startParkingTime").value;
+        const parkingToDateTime = document.getElementById("endParkingTime").value;
+
+        if (parkingFromDateTime != "" && parkingToDateTime != "") {
+            if(parkingFromDateTime > parkingToDateTime )
+                alert("Please select date after From Date");
+            //-------future code----------------------
+        }else {
+            alert("PLease sign up!")
+        }
+    });
+</script>
+
+
