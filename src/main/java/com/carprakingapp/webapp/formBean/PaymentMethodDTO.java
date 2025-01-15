@@ -14,8 +14,6 @@ import java.time.LocalDateTime;
 public class PaymentMethodDTO {
     private Integer userId;
 
-    private Integer bookingId;
-
     private Character paymentMethod;
 
     private LocalDateTime dateOfPayment;

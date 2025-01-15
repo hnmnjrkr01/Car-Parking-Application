@@ -1,10 +1,7 @@
 package com.carprakingapp.webapp.controller;
 
 
-import com.carprakingapp.webapp.database.dao.BookingDAO;
-import com.carprakingapp.webapp.database.dao.ParkingLevelDAO;
-import com.carprakingapp.webapp.database.dao.PaymentMethodDAO;
-import com.carprakingapp.webapp.database.dao.UserDAO;
+import com.carprakingapp.webapp.database.dao.*;
 import com.carprakingapp.webapp.database.entity.*;
 import com.carprakingapp.webapp.formBean.UserDTO;
 import com.carprakingapp.webapp.security.AuthenticatedUserService;
@@ -34,6 +31,12 @@ public class LoginController {
 
     @Autowired
     private UserDAO userDao;
+
+    @Autowired
+    private UserRolesDAO userRolesDao;
+
+    @Autowired
+    private UserRoleLinkDAO userRoleLinkDao;
 
     @Autowired
     private BookingDAO bookingDao;
@@ -94,6 +97,7 @@ public class LoginController {
             if(newUser == null) {
                 newUser = new User();
             }
+            Integer customerRoleId = 3;
 
             newUser.setPassword(encryptedPassword);
             newUser.setUsername(userDTO.getUsername());
@@ -103,6 +107,13 @@ public class LoginController {
             newUser.setEmail(userDTO.getEmail());
 
             userDao.save(newUser);
+
+            //----------Creating new row in User-Role-Link table also-------------------------------
+            UserRoleLink userRoleLink = new UserRoleLink();
+            userRoleLink.setUserId(newUser.getId());
+            userRoleLink.setUserRoleId(customerRoleId);
+            userRoleLinkDao.save(userRoleLink);
+            //------------------------------------------------------------------------------------
 
             authenticatedUserService.changeLoggedInUsername(session,userDTO.getUsername(),userDTO.getPassword());
 

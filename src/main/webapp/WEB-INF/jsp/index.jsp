@@ -173,11 +173,11 @@
                 <td>$9</td>
             </tr>
             <tr>
-                <td>Half Day (6 Hours)</td>
+                <td>Half Day(8 Hours)</td>
                 <td>$25</td>
             </tr>
             <tr>
-                <td>Full Day</td>
+                <td>Full Day(24 Hours)</td>
                 <td>$45</td>
             </tr>
             <tr>

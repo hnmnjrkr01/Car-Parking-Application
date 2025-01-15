@@ -25,11 +25,11 @@ public class Booking {
     //---------One User can have Many Bookings----------
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
     @ToString.Exclude
     private User user;
 
-    @Column(name="user_id", insertable = false, updatable = false)
+    @Column(name="user_id")
     private Integer userId;
     //--------------------------------------------------
 
@@ -37,10 +37,11 @@ public class Booking {
     //---------One Payment-Method can have Many Bookings-----------
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "payment_method_id", nullable = false)
+    @JoinColumn(name = "payment_method_id", nullable = false, insertable = false, updatable = false)
+    @ToString.Exclude
     private PaymentMethod paymentMethod;
 
-    @Column(name="payment_method_id", insertable = false, updatable = false)
+    @Column(name="payment_method_id")
     private Integer paymentMethodId;
 
     //-------------------------------------------------------------
@@ -49,10 +50,11 @@ public class Booking {
     //---------One Parking-Level can have Many Bookings-------------
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "level_id", nullable = false)
+    @JoinColumn(name = "level_id", nullable = false, insertable = false, updatable = false)
+    @ToString.Exclude
     private ParkingLevel parkingLevel;
 
-    @Column(name="level_id", insertable = false, updatable = false)
+    @Column(name="level_id")
     private Integer levelId;
 
     //--------------------------------------------------------------

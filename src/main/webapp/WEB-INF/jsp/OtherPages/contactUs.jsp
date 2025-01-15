@@ -1,5 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../include/header.jsp"/>
 
 <style>
@@ -69,26 +71,44 @@
 
 <div class="contact-form">
     <h3>Send us a Message</h3>
-    <form action="#" method="POST">
+    <form action="/UserReview/review" method="POST">
+
         <div class="form-group">
-            <label for="username">UserName</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            <label for="userReviews">Your Message</label>
+            <textarea id="userReviews" name="userReviews" rows="5" placeholder="Write your message here..."></textarea>
+            <c:if test="${bindingResult.hasFieldErrors('userReviews')}">
+                <c:forEach var="error" items="${bindingResult.getFieldErrors('userReviews')}">
+                    <div class="input_error">${error.getDefaultMessage()}</div>
+                </c:forEach>
+            </c:if>
         </div>
 
         <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <label for="userReviewRating">Rating</label>
+            <select id="userReviewRating" name="userReviewRating" style="width: 600px; height: 40px;">
+                <option>Review Rating</option>
+                <option value="5">Highly Satisfied</option>
+                <option value="4">Can Be Better</option>
+                <option value="3">Good</option>
+                <option value="2">Satisfied</option>
+                <option value="1">Not Satisfied</option>
+            </select>
+            <c:if test="${bindingResult.hasFieldErrors('userReviewRating')}">
+                <c:forEach var="error" items="${bindingResult.getFieldErrors('userReviewRating')}">
+                    <div class="input_error">${error.getDefaultMessage()}</div>
+                </c:forEach>
+            </c:if>
         </div>
 
-        <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-        </div>
-
-        <button type="submit">Send Message</button>
+        <button type="submit">Send Review</button>
     </form>
 </div>
 
+<h3 style="text-align: center; color: #fff;">
+    <c:if test="${not empty message}">
+        <div>${message}</div>
+    </c:if>
+</h3>
 <h2 class="section-title">Other Contact Details</h2>
 
 <ul class="paragraph">

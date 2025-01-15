@@ -2,15 +2,15 @@ package com.carprakingapp.webapp.database.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Entity
 @Table(name="user_role_link")
@@ -25,10 +25,11 @@ public class UserRoleLink {
     //-----------One User-Role can have Many UserRoleLink-------------
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_role_id", nullable = false)
+    @JoinColumn(name = "user_role_id", nullable = false, insertable = false, updatable = false)
+    @ToString.Exclude
     private UserRole userRole;
 
-    @Column(name = "user_role_id", insertable = false, updatable = false)
+    @Column(name = "user_role_id")
     private Integer userRoleId;
 
     //---------------------------------------------------------------
@@ -36,19 +37,16 @@ public class UserRoleLink {
     //--------------------One User can have Many UserRoleLinks---------
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
+    @ToString.Exclude
     private User user;
 
-    @Column(name = "user_id", insertable = false, updatable = false)
+    @Column(name = "user_id")
     private Integer userId;
 
     //------------------------------------------------------------
 
 
-    public UserRoleLink( User user, UserRole userRole) {
-        this.user = user;
-        this.userRole = userRole;
-    }
 
 
 

@@ -24,12 +24,12 @@ public class UserReview {
 
     //-----------------One User has many Reviews---------------------
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnoreProperties("userReviews")
     private User user;
 
-    @Column(name = "user_id", insertable = false, updatable = false)
+    @Column(name = "user_id")
     private Integer userId;
 
     //---------------------------------------------------------------

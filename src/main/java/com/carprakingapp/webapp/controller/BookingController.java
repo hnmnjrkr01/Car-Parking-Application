@@ -2,12 +2,15 @@ package com.carprakingapp.webapp.controller;
 
 
 import com.carprakingapp.webapp.database.dao.BookingDAO;
+import com.carprakingapp.webapp.database.dao.ParkingLevelDAO;
 import com.carprakingapp.webapp.database.dao.PaymentMethodDAO;
 import com.carprakingapp.webapp.database.entity.Booking;
+import com.carprakingapp.webapp.database.entity.ParkingLevel;
 import com.carprakingapp.webapp.database.entity.PaymentMethod;
 import com.carprakingapp.webapp.database.entity.User;
 import com.carprakingapp.webapp.formBean.BookingDTO;
 import com.carprakingapp.webapp.formBean.BookingSearchDTO;
+import com.carprakingapp.webapp.formBean.PaymentMethodDTO;
 import com.carprakingapp.webapp.security.AuthenticatedUserService;
 import com.carprakingapp.webapp.services.BookingServices;
 import jakarta.validation.Valid;
@@ -38,6 +41,9 @@ public class BookingController {
     private PaymentMethodDAO paymentMethodDAO;
 
     @Autowired
+    private ParkingLevelDAO parkingLevelDAO;
+
+    @Autowired
     private AuthenticatedUserService authenticatedUserService;
 
     @GetMapping("/parkingBooking")
@@ -48,48 +54,6 @@ public class BookingController {
         User loggedUser = authenticatedUserService.loadCurrentUser();
         response.addObject("loggedUser", loggedUser);
 
-//        if(bindingResult.hasErrors()) {
-//            response.addObject("bindingResult", bindingResult);
-//            response.addObject("bookingDTO", bookingDTO);
-//        }else {
-//            BookingServices services = new BookingServices();
-//
-//            //--------------Converting String to Date----------------------------------------------
-//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-//            Date startParking = formatter.parse(bookingDTO.getStartDateTime());
-//            Date endParking = formatter.parse(bookingDTO.getEndDateTime());
-//
-//            //---------------Converting Date to localDateTime---------------------------------------
-//            LocalDateTime startDateTime = services.convertToLocalDateTimeViaInstant(startParking);
-//            LocalDateTime endDateTime = services.convertToLocalDateTimeViaInstant(endParking);
-//
-//            //--------------Calculating Duaration and Total-Price to save in Bookinf Entity------------
-//            Integer duration = services.durationCalculation(startDateTime, endDateTime);
-//            Double totalPrice = duration * 100.52;
-//
-//            //--------------------Creating Payment-Method entity first-----------------------------------
-//
-//            PaymentMethod payment = new PaymentMethod();
-//            payment.setUserId(loggedUser.getId());
-//            payment.setPaymentMethod(bookingDTO.getPaymentMethod());
-//            payment.setDateOfPayment(endDateTime);
-//
-//            paymentMethodDAO.save(payment);
-//
-//            //-----------------Now will create Booking-Entity with payment-id-----------------------------
-//
-//            Booking booking = new Booking();
-//            booking.setUserId(loggedUser.getId());
-//            booking.setPaymentMethodId(payment.getPaymentId());
-//            booking.setLevelId(bookingDTO.getLevelId());
-//            booking.setStartDateTime(startDateTime);
-//            booking.setEndDateTime(endDateTime);
-//            booking.setDuration(duration);
-//            booking.setTotalPrice(totalPrice);
-//
-//            bookingDAO.save(booking);
-
-//        }
         return response;
     }
 
@@ -97,9 +61,13 @@ public class BookingController {
     public ModelAndView bookNewParking(@Valid BookingDTO bookingDTO, BindingResult bindingResult) throws ParseException {
         ModelAndView response = new ModelAndView();
         response.setViewName("Booking/bookingParking");
+        PaymentMethodDTO paymentMethodDTO = new PaymentMethodDTO();
 
         User loggedUser = authenticatedUserService.loadCurrentUser();
         response.addObject("loggedUser", loggedUser);
+
+        bookingDTO.setUserId(loggedUser.getId());
+        paymentMethodDTO.setUserId(loggedUser.getId());
 
         if(bindingResult.hasErrors()) {
             response.addObject("bindingResult", bindingResult);
@@ -112,47 +80,58 @@ public class BookingController {
             Date startParking = formatter.parse(bookingDTO.getStartDateTime());
             Date endParking = formatter.parse(bookingDTO.getEndDateTime());
 
+            if(endParking.after(startParking)) {
+
             //---------------Converting Date to localDateTime---------------------------------------
             LocalDateTime startDateTime = services.convertToLocalDateTimeViaInstant(startParking);
             LocalDateTime endDateTime = services.convertToLocalDateTimeViaInstant(endParking);
 
-            //--------------Calculating Duaration and Total-Price to save in Bookinf Entity------------
+            paymentMethodDTO.setDateOfPayment(endDateTime);
+
+            //--------------Calculating Duaration and Total-Price to save in Booking Entity------------
+
             Integer duration = services.durationCalculation(startDateTime, endDateTime);
-            Double totalPrice = duration * 100.52;
+            Double totalPrice = services.totalPriceCalculation(duration);
 
             //--------------------Creating Payment-Method entity first-----------------------------------
 
             PaymentMethod payment = new PaymentMethod();
-            payment.setUserId(loggedUser.getId());
+            payment.setUserId(paymentMethodDTO.getUserId());
             payment.setPaymentMethod(bookingDTO.getPaymentMethod());
-            payment.setDateOfPayment(endDateTime);
+            payment.setDateOfPayment(paymentMethodDTO.getDateOfPayment());
+            payment.setUser(loggedUser);
 
             paymentMethodDAO.save(payment);
 
             //-----------------Now will create Booking-Entity with payment-id-----------------------------
 
             Booking booking = new Booking();
-            booking.setUserId(loggedUser.getId());
+            booking.setUserId(payment.getUserId());
             booking.setPaymentMethodId(payment.getPaymentId());
             booking.setLevelId(bookingDTO.getLevelId());
             booking.setStartDateTime(startDateTime);
             booking.setEndDateTime(endDateTime);
             booking.setDuration(duration);
             booking.setTotalPrice(totalPrice);
+            booking.setLicensePlateNumber(bookingDTO.getLicensePlateNumber());
+
 
             bookingDAO.save(booking);
 
+            response.setViewName("redirect:/User/userDashboard");
+
+        }else{
+                bindingResult.rejectValue("startDateTime", "error","Start-Parking-Date of parking can't come after the End-Parking-Date");
+            }
         }
 
             return response;
     }
 
-
-
-
     @GetMapping("/availableSlots")
     public ModelAndView bookingSearch(@RequestParam String startParkingTime ,
-                                      @RequestParam String endParkingTime
+                                      @RequestParam String endParkingTime,
+
                                       ) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("Booking/availableSlots");
@@ -166,6 +145,9 @@ public class BookingController {
 
         return response;
     }
+
+
+
 
 
 

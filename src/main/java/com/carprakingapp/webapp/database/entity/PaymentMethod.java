@@ -25,11 +25,11 @@ public class PaymentMethod {
     //------------------One User has many payment methods---------
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
     @ToString.Exclude
     private User user;
 
-    @Column(name="user_id", insertable = false, updatable = false)
+    @Column(name="user_id")
     private Integer userId;
 
     //------------------------------------------------------------

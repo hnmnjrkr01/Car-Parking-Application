@@ -19,12 +19,12 @@
             <table>
                 <tr>
                     <td>
-                        <label for="StarDateTime">From DateTime</label>
+                        <label for="startDateTime">From DateTime</label>
                     </td>
                     <td>
-                        <input type="datetime-local" id="StarDateTime" name="StarDateTime" placeholder="From">
-                        <c:if test="${bindingResult.hasFieldErrors('StarDateTime')}">
-                            <c:forEach var="error" items="${bindingResult.getFieldErrors('StarDateTime')}">
+                        <input type="datetime-local" id="startDateTime" name="startDateTime" placeholder="From">
+                        <c:if test="${bindingResult.hasFieldErrors('startDateTime')}">
+                            <c:forEach var="error" items="${bindingResult.getFieldErrors('startDateTime')}">
                                 <div class="input_error">${error.getDefaultMessage()}</div>
                             </c:forEach>
                         </c:if>
@@ -32,12 +32,12 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="EndDateTime">To Date-Time</label>
+                        <label for="endDateTime">To Date-Time</label>
                     </td>
                     <td>
-                        <input type="datetime-local" id="EndDateTime" name="EndDateTime" placeholder="To" >
-                        <c:if test="${bindingResult.hasFieldErrors('EndDateTime')}">
-                            <c:forEach var="error" items="${bindingResult.getFieldErrors('EndDateTime')}">
+                        <input type="datetime-local" id="endDateTime" name="endDateTime" placeholder="To" >
+                        <c:if test="${bindingResult.hasFieldErrors('endDateTime')}">
+                            <c:forEach var="error" items="${bindingResult.getFieldErrors('endDateTime')}">
                                 <div class="input_error">${error.getDefaultMessage()}</div>
                             </c:forEach>
                         </c:if>
