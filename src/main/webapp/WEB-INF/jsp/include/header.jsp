@@ -32,9 +32,9 @@
 
     <a href="/OtherPages/contactUs">Contact</a>
 
-
+    <sec:authorize access="isAuthenticated()">
     <a href="/User/userDashboard">Dashboard</a>
-
+    </sec:authorize>
 
 
     <sec:authorize access="!isAuthenticated()">

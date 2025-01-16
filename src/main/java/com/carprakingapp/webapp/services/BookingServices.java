@@ -47,29 +47,12 @@ public class BookingServices {
         }else if (duration == 24){
             totalPrice = (45+(45*tax));
         }else if (duration > 24){
-            totalPrice = (100+(100*tax));
+            totalPrice = (200+(200*tax));
         }
         return totalPrice;
     }
 
-
-    public double availableSlots(List<Booking> bookingsList, Integer levelId){
-
-
-
-
-
-
-
-
-        return 0;
+    public boolean isDateBetween(LocalDateTime dateToCheck, LocalDateTime startDate, LocalDateTime endDate) {
+        return !dateToCheck.isBefore(startDate) && !dateToCheck.isAfter(endDate);
     }
-
-
-
-
-
-
-
-
 }

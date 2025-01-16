@@ -128,7 +128,7 @@
 <div class="rate-container">
     <div class="preBookStyle">
         <h1>Check Availability</h1>
-        <form id="bookingForm" action="/Booking/availableSlots">
+        <form id="bookingForm" action="/searchAvailability">
             <table>
                 <tr class="form-group">
                     <td>
@@ -144,6 +144,19 @@
                     </td>
                     <td>
                         <input type="datetime-local" id="endParkingTime" name="endParkingTime" >
+                    </td>
+                </tr>
+                <tr class="form-group">
+                    <td>
+                        <label for="levelId">Parking Level</label>
+                    </td>
+                    <td>
+                        <select id="levelId" name="levelId" style="height: 40px; width: 250px;">
+                            <option>Select a Parking Floor</option>
+                            <option value="1">Floor-1</option>
+                            <option value="2">Floor-2</option>
+                            <option value="3">Floor-3</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -200,7 +213,7 @@
     document.getElementsByName("startParkingTime")[0].min = today;
     document.getElementsByName("endParkingTime")[0].min = today;
 
-    document.getElementById("bookingForm").addEventListener("submit", function(event) {
+    document.getElementById("bookingForm").addEventListener("onClick", function(event) {
         event.preventDefault();
 
         const parkingFromDateTime = document.getElementById("startParkingTime").value;

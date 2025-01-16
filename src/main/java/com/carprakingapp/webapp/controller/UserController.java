@@ -3,10 +3,8 @@ package com.carprakingapp.webapp.controller;
 
 import com.carprakingapp.webapp.database.dao.UserDAO;
 import com.carprakingapp.webapp.database.entity.User;
-import com.carprakingapp.webapp.formBean.UserDTO;
 import com.carprakingapp.webapp.formBean.UserEditDTO;
 import com.carprakingapp.webapp.security.AuthenticatedUserService;
-import com.carprakingapp.webapp.services.IUserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -182,7 +179,8 @@ public class UserController {
 
             userDAO.save(user);
             response.addObject("userEditDTO", userEditDTO);
-            response.setViewName("User/foundUsers");
+            response.setViewName("redirect:/User/foundUsers");
+            
 
 
 

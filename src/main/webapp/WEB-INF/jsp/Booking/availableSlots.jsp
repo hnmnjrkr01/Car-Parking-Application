@@ -13,7 +13,13 @@
 <jsp:include page="../include/header.jsp"/>
 
 
-<h1>Available Slots </h1>
+<div class="form-container" >
+    <h2>Available-Slots</h2>
+    <form action="">
+        ${availableSlots} Slots are available between ${startParking} and ${endParking}.
+    </form>
+
+</div>
 
 
 <jsp:include page="../include/footer.jsp"/>

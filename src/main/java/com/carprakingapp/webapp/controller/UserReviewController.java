@@ -38,7 +38,7 @@ public class UserReviewController {
 
         ModelAndView response = new ModelAndView();
         response.setViewName("OtherPages/contactUs");
-//        LOG.info("****************Welcome to  UserReviewController******************");
+        LOG.info("****************Welcome to  UserReviewController******************");
 
         User loggedUser = authenticatedUserService.loadCurrentUser();
         response.addObject("loggedUser", loggedUser);

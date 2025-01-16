@@ -99,7 +99,7 @@
 
 <div class="rate-container">
     <div class="preBookStyle">
-        <h2>Your Previous Bookings</h2>
+        <h2>Your Bookings</h2>
         <table>
             <tr>
                 <th>Booing-Id</th>
@@ -138,7 +138,12 @@
                         <label for="startParkingTime">From Date and Time</label>
                     </td>
                     <td>
-                        <input type="datetime-local" id="startParkingTime" name="startParkingTime" >
+                        <input type="datetime-local" id="startParkingTime" name="startParkingTime" value="${searchDTO.startParkingTime}">
+                        <c:if test="${bindingResult.hasFieldErrors('startParkingTime')}">
+                            <c:forEach var="error" items="${bindingResult.getFieldErrors('startParkingTime')}">
+                                <div class="input_error">${error.getDefaultMessage()}</div>
+                            </c:forEach>
+                        </c:if>
                     </td>
                 </tr>
                 <tr class="form-group">
@@ -146,15 +151,30 @@
                         <label for="endParkingTime">To Date and Time </label>
                     </td>
                     <td>
-                        <input type="datetime-local" id="endParkingTime" name="endParkingTime">
+                        <input type="datetime-local" id="endParkingTime" name="endParkingTime" value="${searchDTO.endParkingTime}">
+                        <c:if test="${bindingResult.hasFieldErrors('endParkingTime')}">
+                            <c:forEach var="error" items="${bindingResult.getFieldErrors('endParkingTime')}">
+                                <div class="input_error">${error.getDefaultMessage()}</div>
+                            </c:forEach>
+                        </c:if>
                     </td>
                 </tr>
                 <tr class="form-group">
                     <td>
-                        <label for="availableSlots">Available Slots </label>
+                        <label for="levelId">Parking Level</label>
                     </td>
                     <td>
-                        <input id="availableSlots" name="availableSlots">
+                        <select id="levelId" name="levelId" style="height: 40px; width: 300px;" >
+                            <option value=" ">Select a Parking Floor</option>
+                            <option value="1">Floor-1</option>
+                            <option value="2">Floor-2</option>
+                            <option value="3">Floor-3</option>
+                        </select>
+                        <c:if test="${bindingResult.hasFieldErrors('levelId')}">
+                            <c:forEach var="error" items="${bindingResult.getFieldErrors('levelId')}">
+                                <div class="input_error">${error.getDefaultMessage()}</div>
+                            </c:forEach>
+                        </c:if>
                     </td>
                 </tr>
                 <tr></tr> <tr></tr><tr></tr> <tr></tr> <tr></tr><tr></tr>
@@ -163,15 +183,9 @@
                         <button type="submit" class="btn">Search</button>
                     </td>
                 </tr>
-
             </table>
         </form>
     </div>
-
-
-
-
-
 
 </div>
 

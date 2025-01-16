@@ -5,8 +5,6 @@ import com.carprakingapp.webapp.database.entity.PaymentMethodEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,6 +32,5 @@ public interface BookingDAO extends JpaRepository<Booking, Long> {
                     "and b.user_id = u.id " +
                     "and u.id= :userId;",nativeQuery = true)
     List<String> levelCodes(Integer userId);
-
 
 }

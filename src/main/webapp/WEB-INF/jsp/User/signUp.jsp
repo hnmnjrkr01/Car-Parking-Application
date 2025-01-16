@@ -133,6 +133,7 @@
             <tr>
                 <td colspan="2">
                     <button type="submit">Sign Up</button>
+                    <button type="reset" class="btn">Clear</button>
                 </td>
             </tr>
         </table>
