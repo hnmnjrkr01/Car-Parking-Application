@@ -180,7 +180,7 @@ public class UserController {
             userDAO.save(user);
             response.addObject("userEditDTO", userEditDTO);
             response.setViewName("redirect:/User/foundUsers");
-            
+
 
 
 

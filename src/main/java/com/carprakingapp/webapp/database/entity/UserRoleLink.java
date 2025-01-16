@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name="user_role_link")
+@Table(name="user_role_links")
 public class UserRoleLink {
 
     @Id

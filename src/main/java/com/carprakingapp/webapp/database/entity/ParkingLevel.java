@@ -27,6 +27,12 @@ public class ParkingLevel {
 
     //--------------------------------------------------------------
 
+    //---------One Parking-Level can have Many Parking-Spots-------------
+
+    @OneToMany(mappedBy = "parkingLevel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ParkingSpot> prakingSpots;
+
+    //---------------------------------------------------------------
 
     @Column(name = "level_code", columnDefinition = "Char")
     private String levelCode;
