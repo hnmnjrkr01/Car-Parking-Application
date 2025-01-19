@@ -50,8 +50,6 @@ public class UserDetailImpl implements UserDetailsService {
 //        List<UserRole> userRoles = userRoleDAO.findByUserRoleId(user.getId());
         List<UserRole> userRoles = userRoleDAO.findUserRoleByUserId(user.getId());
 
-
-
         // convert our user roles into spring granted authorities
         List<GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
 

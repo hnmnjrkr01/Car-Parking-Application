@@ -33,8 +33,7 @@ public class ParkingSpot {
     @Column(name = "parking_spot_name")
     private String parkingSpotName;
 
-    @Column(name = "parking_occupancy", columnDefinition = "TINYINT")
-    private Boolean parkingOccupancy;
+
 
 
 

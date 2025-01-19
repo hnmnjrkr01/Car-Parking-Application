@@ -159,7 +159,7 @@ public class BookingController {
             ParkingLevel parkingLevel = parkingLevelDAO.findByLevelId(slotSearchDTO.getLevelId());
             int maxOccupancy = parkingLevel.getMaximumCapacity();
             int busySlotsCounter = 0;
-            int availableSlots = 0;
+            int availableSlots = maxOccupancy;
 
             //--------------Converting String to Date----------------------------------------------
             SimpleDateFormat sdfStart = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
